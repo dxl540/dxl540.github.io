@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Number Maze</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="verticalWrapper">
+        <select id="levelSelect"></select>
+        <div id="levelButtons">
+            <button id="previousLevel">Previous</button>
+            <button id="nextLevel">Next</button>
+        </div>
+
+        <p id="introText"></p>
+
+        <canvas id="game" width="600" height="600"></canvas>
+
+        <div id="controls">
+            <button id="upButton">↑</button>
+            <button id="leftButton">←</button>
+            <button id="undoButton">↶</button>
+            <button id="rightButton">→</button>
+            <button id="downButton">↓</button>
+        </div>
+        <p id="status"></p>
+
+    </div>
+
+    <script src="mazes_list.js"></script>
+    <script src="maze.js"></script>
+</body>

@@ -1,0 +1,93 @@
+#levelSelect {
+    width: 240px;
+    height: 30px;
+    font-size: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#levelButtons {
+    display: grid;
+    grid-template-columns: 120px 120px;
+    grid-template-rows: 30px;
+    gap: 5px;
+}
+
+#previousLevel {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#nextLevel {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#levelButtons button {
+    width: 120px;
+    height: 30px;
+    font-size: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#introText {
+    white-space: pre-line;
+    text-align: center;
+}
+
+#verticalWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#controls {
+    display: grid;
+    grid-template-columns: 60px 60px 60px;
+    grid-template-rows: 60px 60px 60px;
+    gap: 5px;
+}
+
+#upButton {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#leftButton {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#rightButton {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+#downButton {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+#undoButton {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#controls button {
+    width: 60px;
+    height: 60px;
+    font-size: 45px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#controls {
+    margin-top: 20px;
+}
