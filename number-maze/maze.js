@@ -22,6 +22,11 @@ const player_size = 36;
 const player_offset = tile_offset - player_size / 2;
 const font_size = player_size * 0.75;
 
+const player_num_rounder = new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+});
+
 for (let i = 0; i < levels.length; i++) {
     const option = document.createElement("option");
 
@@ -152,7 +157,7 @@ function draw() {
     ctx.fillStyle = "red";
     ctx.fillRect(player_x * tile_size + player_offset, player_y * tile_size + player_offset, player_size, player_size);
     ctx.fillStyle = "cyan";
-    let player_text = String(player_num)
+    let player_text = player_num_rounder.format(player_num);
     ctx.font = `${font_size * (2.0 / Math.max(2, player_text.length))}px Arial`
     ctx.fillText(player_text, player_x * tile_size + tile_offset, player_y * tile_size + tile_offset);
 
