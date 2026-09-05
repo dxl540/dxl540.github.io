@@ -6,6 +6,7 @@ const upper_text = document.getElementById("introText");
 const level_select = document.getElementById("levelSelect");
 const previous_level = document.getElementById("previousLevel");
 const next_level = document.getElementById("nextLevel");
+const reset_level = document.getElementById("resetLevel");
 
 const up_button = document.getElementById("upButton");
 const down_button = document.getElementById("downButton");
@@ -163,10 +164,10 @@ function draw() {
                 status_text.textContent = "You win!";
             }
         } else {
-            status_text.textContent = `You need to finish with the target number ${target_num}. Keep trying!`;
+            status_text.innerHTML = `You need to finish with the target number <span style="color: blue;">${target_num}</span>. Keep trying!`;
         }
     } else {
-        status_text.textContent = `Reach the top-right corner with the target number ${target_num} to win!`;
+        status_text.innerHTML = `Reach the top-right corner with the target number <span style="color: blue;">${target_num}</span> to win!`;
     }
 }
 
@@ -270,6 +271,10 @@ next_level.addEventListener("click", function () {
         level_select.selectedIndex++;
         level_select.dispatchEvent(new Event("change"));
     }
+});
+
+reset_level.addEventListener("click", function () {
+    level_select.dispatchEvent(new Event("change"));
 });
 
 up_button.addEventListener("click", moveUp);
