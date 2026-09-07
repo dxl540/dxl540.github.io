@@ -3,6 +3,14 @@ const ctx = canvas.getContext("2d");
 const status_text = document.getElementById("status");
 const upper_text = document.getElementById("introText");
 
+const dark_button = document.getElementById("darkModeButton");
+let dark_mode = false;
+let colors = {
+    background: "white",
+    wall: "black",
+    target: "blue"
+};
+
 const level_select = document.getElementById("levelSelect");
 const previous_level = document.getElementById("previousLevel");
 const next_level = document.getElementById("nextLevel");
@@ -23,6 +31,7 @@ const player_offset = tile_offset - player_size / 2;
 const font_size = player_size * 0.75;
 
 const player_num_rounder = new Intl.NumberFormat('en-US', {
+    useGrouping: false,
     minimumFractionDigits: 0,
     maximumFractionDigits: 2
 });
@@ -75,7 +84,11 @@ function initialize_maze(level_number) {
     player_y = height - 1;
     player_num = start_num;
 
-    intro_text = level_data.intro_text;
+    if (level_number == 0 && dark_mode) {
+        intro_text = level_data.alt_intro_text;
+    } else {
+        intro_text = level_data.intro_text;
+    }
     upper_text.innerHTML = intro_text;
 
     player_path = [[player_x, player_y, start_num]];
@@ -113,7 +126,11 @@ function updateNum(old_num, new_x, new_y) {
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "black";
+
+    ctx.fillStyle = colors.background;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = colors.wall;
 
     for (let j = 0; j < height + 1; j++) {
         for (let i = 0; i < width; i++) {
@@ -135,10 +152,10 @@ function draw() {
         for (let i = 0; i < width; i++) {
             let cell_text = maze[j][i];
             if (j == target_y && i == target_x) {
-                ctx.fillStyle = "blue";
+                ctx.fillStyle = colors.target;
                 cell_text = String(target_num);
             } else {
-                ctx.fillStyle = "black";
+                ctx.fillStyle = colors.wall;
             }
             ctx.font = `${font_size * (2.0 / Math.max(2, cell_text.length))}px Arial`;
             ctx.fillText(cell_text, i * tile_size + tile_offset, j * tile_size + tile_offset);
@@ -163,16 +180,12 @@ function draw() {
 
     if (player_x == target_x && player_y == target_y) {
         if (player_num == target_num) {
-            if (level_select.selectedIndex == 3) {
-                status_text.textContent = "You're ready for the real thing!";
-            } else {
-                status_text.textContent = "You win!";
-            }
+            status_text.textContent = "You win!";
         } else {
-            status_text.innerHTML = `You need to finish with the target number <span style="color: blue;">${target_num}</span>. Keep trying!`;
+            status_text.innerHTML = `You need to finish with the target number <span style="color: ${colors.target};">${target_num}</span>. Keep trying! (Current number: <span style="color: red">${player_num}</span>)`;
         }
     } else {
-        status_text.innerHTML = `Reach the top-right corner with the target number <span style="color: blue;">${target_num}</span> to win!`;
+        status_text.innerHTML = `Reach the top-right corner with the target number <span style="color: ${colors.target};">${target_num}</span> to win! (Current number: <span style="color: red">${player_num}</span>)`;
     }
 }
 
@@ -287,5 +300,29 @@ down_button.addEventListener("click", moveDown);
 left_button.addEventListener("click", moveLeft);
 right_button.addEventListener("click", moveRight);
 undo_button.addEventListener("click", undo);
+
+dark_button.addEventListener("click", function () {
+    document.body.classList.toggle("dark");
+    if (dark_mode) {
+        dark_mode = false;
+        colors.background = "white";
+        colors.wall = "black";
+        colors.target = "blue";
+        dark_button.textContent = "Dark mode";
+        if (level_select.selectedIndex == 0) {
+            upper_text.innerHTML = levels[0].intro_text;
+        }
+    } else {
+        dark_mode = true;
+        colors.background = "black";
+        colors.wall = "white";
+        colors.target = "cyan";
+        dark_button.textContent = "Light mode";
+        if (level_select.selectedIndex == 0) {
+            upper_text.innerHTML = levels[0].alt_intro_text;
+        }
+    }
+    draw();
+});
 
 initialize_maze(0);

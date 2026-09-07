@@ -7,6 +7,12 @@ const levels = [
         Use the <b>arrow keys</b>, <b>WASD</b>, or <b>provided buttons</b> to move, and <b>z</b> to undo.
         Every time you move into a cell with an <b>operation</b>, that operation will be <b>applied to your current number</b>.
         Reach the <b>top-right corner</b> with the <b>target number</b> in <span style="color: blue;"><b>blue</b></span> to win!`,
+        alt_intro_text: `Welcome to <b>Number Mazes</b>! This is a puzzle game where you attempt to solve a maze while using operations within the maze to reach a target number.
+        
+        You are the <span style="color: red;"><b>red square</b></span>, starting in the bottom-left corner with a <b>number</b>.
+        Use the <b>arrow keys</b>, <b>WASD</b>, or <b>provided buttons</b> to move, and <b>z</b> to undo.
+        Every time you move into a cell with an <b>operation</b>, that operation will be <b>applied to your current number</b>.
+        Reach the <b>top-right corner</b> with the <b>target number</b> in <span style="color: cyan;"><b>cyan</b></span> to win!`,
         maze: [
             ["+2", "", "", ""],
             ["", "", "", ""],
