@@ -302,7 +302,7 @@ right_button.addEventListener("click", moveRight);
 undo_button.addEventListener("click", undo);
 
 dark_button.addEventListener("click", function () {
-    document.body.classList.toggle("dark");
+    dark = document.body.classList.toggle("dark");
     if (dark_mode) {
         dark_mode = false;
         colors.background = "white";
@@ -322,7 +322,12 @@ dark_button.addEventListener("click", function () {
             upper_text.innerHTML = levels[0].alt_intro_text;
         }
     }
+    localStorage.setItem("darkMode", dark);
     draw();
 });
 
 initialize_maze(0);
+
+if (localStorage.getItem("darkMode") === "true") {
+    dark_button.dispatchEvent(new Event("click"));
+}
