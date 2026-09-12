@@ -8,9 +8,11 @@
 </head>
 
 <body>
-    <button id="darkModeButton">Dark mode</button>
-
     <div id="verticalWrapper">
+        <div id="topButtons">
+            <button id="hideControlsButton">Hide D-pad</button>
+            <button id="darkModeButton">Dark mode</button>
+        </div>
         <select id="levelSelect"></select>
         <div id="levelButtons">
             <button id="previousLevel">Previous</button>
@@ -19,6 +21,8 @@
         </div>
 
         <p id="introText"></p>
+        <p id="status"></p>
+        <p id="timeText"></p>
 
         <canvas id="game" width="600" height="600"></canvas>
 
@@ -29,7 +33,6 @@
             <button id="rightButton">→</button>
             <button id="downButton">↓</button>
         </div>
-        <p id="status"></p>
 
     </div>
 
