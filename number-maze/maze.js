@@ -338,7 +338,7 @@ function draw() {
     let status_num = status_num_rounder.format(rounded_num);
     if (player_x == target_x && player_y == target_y) {
         if (rounded_num == target_num) {
-            if (level_select.value === 3) {
+            if (level_select.selectedIndex === 3) {
                 status_text.textContent = "You're ready for the real thing!";
             } else {
                 status_text.textContent = "You win!";
