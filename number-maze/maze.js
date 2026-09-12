@@ -283,36 +283,6 @@ function draw() {
     }
     ctx.stroke()
 
-    ctx.fillStyle = "green";
-    let neighbors = 1;
-    let last_line = "";
-    let new_line = "";
-    let current_x = target_x;
-    let current_y = target_y;
-    let current_num = target_num;
-    while (neighbors === 1) {
-        current_num = reverseNum(current_num, current_x, current_y);
-        neighbors = 0;
-        for (const entry of scratchNeighbors(current_x, current_y)) {
-            line = entry[0];
-            if (line !== last_line && scratch_work.has(line)) {
-                neighbors++;
-                new_line = line;
-                current_x = entry[1];
-                current_y = entry[2];
-            }
-        }
-        last_line = new_line;
-        if (neighbors === 0 && maze[current_y][current_x] === ""
-            && (current_x !== player_x || current_y != player_y)
-            && (current_x !== target_x || current_y != target_y)) {
-            let rounded_current_num = 0.0 + Number(current_num.toFixed(10));
-            const current_text = player_num_rounder.format(rounded_current_num);
-            ctx.font = `${font_size * (2.0 / Math.max(2, current_text.length))}px Arial`
-            ctx.fillText(current_text, current_x * tile_size + tile_offset, current_y * tile_size + tile_offset);
-        }
-    }
-
     for (let j = 0; j < height; j++) {
         for (let i = 0; i < width; i++) {
             let cell_text = maze[j][i];
@@ -327,6 +297,42 @@ function draw() {
         }
     }
 
+    let neighbors = 1;
+    let last_line = "";
+    let new_line = "";
+    let current_x = target_x;
+    let current_y = target_y;
+    let new_x = -1;
+    let new_y = -1;
+    let current_num = target_num;
+    while (neighbors === 1) {
+        neighbors = 0;
+        for (const entry of scratchNeighbors(current_x, current_y)) {
+            line = entry[0];
+            if (line !== last_line && scratch_work.has(line)) {
+                neighbors++;
+                new_line = line;
+                new_x = entry[1];
+                new_y = entry[2];
+            }
+        }
+        last_line = new_line;
+        if (neighbors === 0
+            && (current_x !== player_x || current_y != player_y)
+            && (current_x !== target_x || current_y != target_y)) {
+            ctx.fillStyle = "lightgreen";
+            ctx.fillRect(current_x * tile_size + player_offset, current_y * tile_size + player_offset, player_size, player_size);
+            ctx.fillStyle = "green";
+            let rounded_current_num = 0.0 + Number(current_num.toFixed(10));
+            const current_text = player_num_rounder.format(rounded_current_num);
+            ctx.font = `${font_size * (2.0 / Math.max(2, current_text.length))}px Arial`
+            ctx.fillText(current_text, current_x * tile_size + tile_offset, current_y * tile_size + tile_offset);
+        }
+        current_num = reverseNum(current_num, current_x, current_y);
+        current_x = new_x;
+        current_y = new_y;
+    }
+
     ctx.fillStyle = "red";
     ctx.fillRect(player_x * tile_size + player_offset, player_y * tile_size + player_offset, player_size, player_size);
     ctx.fillStyle = "cyan";
@@ -338,7 +344,7 @@ function draw() {
     let status_num = status_num_rounder.format(rounded_num);
     if (player_x == target_x && player_y == target_y) {
         if (rounded_num == target_num) {
-            if (level_select.selectedIndex === 3) {
+            if (level_select.selectedIndex === 4) {
                 status_text.textContent = "You're ready for the real thing!";
             } else {
                 status_text.textContent = "You win!";

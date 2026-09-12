@@ -64,13 +64,7 @@ const levels = [
     },
     {
         title: "Tutorial #3",
-        intro_text: `When it comes to some operations, <b>order matters</b>!
-        
-        (Some additional controls: you can <b>drag</b> the red square around to move.
-        Dragging anywhere else on the grid creates <b>scratch work</b> in the form of <b><span style="color:lightgreen">green</span></b> lines.
-        If you have a green path <b>leading to the ending square</b>, a <b><span style="color:green">green number</span></b> will show up.
-        This number shows you the number you'd need to follow that green path to win!
-        Scratch work is <b>purely cosmetic</b>; you'll still have to get the red square to the finish.)`,
+        intro_text: `When it comes to some operations, <b>order matters</b>!`,
         maze: [
             ["", "", "x3", ""],
             ["", "", "", ""],
@@ -95,6 +89,36 @@ const levels = [
     },
     {
         title: "Tutorial #4",
+        intro_text: `You can also <b>drag</b> the red square to move it.
+        Dragging anywhere else on the grid creates <b>scratch work</b> in the form of <b><span style="color:lightgreen">green</span></b> lines.
+        If you have a green path <b>leading to the ending square</b>, a <b><span style="color:green">green number</span></b> will show up.
+        This number shows you the number you'd need to follow that green path to win!
+        
+        (Scratch work is <b>purely cosmetic</b>; you'll still have to get the red square to the finish.)`,
+        maze: [
+            ["", "/2", "", ""],
+            ["+6", "", "/3", ""],
+            ["", "+1", "", "x5"],
+            ["", "", "+4", ""]
+        ],
+        walls_h: [
+            [1, 1, 1, 1],
+            [0, 1, 1, 1],
+            [1, 1, 1, 0],
+            [0, 1, 0, 1],
+            [1, 1, 1, 1]
+        ],
+        walls_v: [
+            [1, 0, 0, 0, 1],
+            [1, 0, 0, 0, 1],
+            [1, 0, 0, 0, 1],
+            [1, 0, 0, 0, 1]
+        ],
+        start_num: 2,
+        target_num: 8
+    },
+    {
+        title: "Tutorial #5",
         intro_text: `Figure out <b>which operations</b> you actually need, then trace out a path!
         
         (By the way, you can use <b>n</b> and <b>m</b> to switch levels as well.)`,
