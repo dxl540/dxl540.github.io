@@ -1,0 +1,162 @@
+body {
+    background-color: white;
+    color: black;
+}
+
+body.dark {
+    background-color: black;
+    color: white;
+}
+
+#topButtons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#levelSelect {
+    width: 240px;
+    height: 30px;
+    font-size: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#levelButtons {
+    display: grid;
+    grid-template-columns: 120px 120px 120px;
+    grid-template-rows: 30px;
+    gap: 5px;
+}
+
+#previousLevel {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#resetLevel {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#nextLevel {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+#levelButtons button {
+    width: 120px;
+    height: 30px;
+    font-size: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#introText {
+    white-space: pre-line;
+    text-align: center;
+    max-width: 90vw;
+    overflow-wrap: break-word;
+    margin-bottom: 0px;
+}
+
+#status {
+    white-space: pre-line;
+    text-align: center;
+    max-width: 90vw;
+    overflow-wrap: break-word;
+    margin-bottom: 0px;
+}
+
+#solveInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#share {
+    height: 15px;
+    font-size: 8pt;
+}
+
+#share.hidden {
+    display: none;
+}
+
+#timeText {
+    white-space: pre-line;
+    text-align: center;
+    max-width: 90vw;
+    overflow-wrap: break-word;
+    margin-top: 0px;
+    margin: 0px;
+}
+
+#verticalWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#game {
+    touch-action: none;
+}
+
+#controls {
+    display: grid;
+    grid-template-columns: 60px 60px 60px;
+    grid-template-rows: 60px 60px 60px;
+    gap: 5px;
+}
+
+#controls.hidden {
+    display: none;
+}
+
+#upButton {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#leftButton {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#rightButton {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+#downButton {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+#undoButton {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#controls button {
+    width: 60px;
+    height: 60px;
+    font-size: 45px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0;
+    box-sizing: border-box;
+
+    touch-action: manipulation;
+}
+
+#controls {
+    margin-top: 20px;
+}
