@@ -21,31 +21,31 @@ if (localStorage.getItem("controlsHidden") === "true") {
     hide_controls_button.textContent = "Show D-pad";
 }
 
-let levelTimes;
-let levelSolved;
+let adventLevelTimes;
+let adventLevelSolved;
 let lastTimestamp = Date.now();
 
-if (localStorage.getItem("levelTimes") === null) {
-    levelTimes = {};
+if (localStorage.getItem("adventLevelTimes") === null) {
+    adventLevelTimes = {};
 } else {
-    levelTimes = JSON.parse(localStorage.getItem("levelTimes"));
+    adventLevelTimes = JSON.parse(localStorage.getItem("adventLevelTimes"));
 }
-if (localStorage.getItem("levelSolved") === null) {
-    levelSolved = {};
+if (localStorage.getItem("adventLevelSolved") === null) {
+    adventLevelSolved = {};
 } else {
-    levelSolved = JSON.parse(localStorage.getItem("levelSolved"));
+    adventLevelSolved = JSON.parse(localStorage.getItem("adventLevelSolved"));
 }
 
 for (const level of levels) {
-    if (!(levelTimes.hasOwnProperty(level.id))) {
-        levelTimes[level.id] = 0;
+    if (!(adventLevelTimes.hasOwnProperty(level.id))) {
+        adventLevelTimes[level.id] = 0;
     }
-    if (!(levelSolved.hasOwnProperty(level.id))) {
-        levelSolved[level.id] = 0;
+    if (!(adventLevelSolved.hasOwnProperty(level.id))) {
+        adventLevelSolved[level.id] = 0;
     }
 }
-localStorage.setItem("levelTimes", JSON.stringify(levelTimes));
-localStorage.setItem("levelSolved", JSON.stringify(levelSolved));
+localStorage.setItem("adventLevelTimes", JSON.stringify(adventLevelTimes));
+localStorage.setItem("adventLevelSolved", JSON.stringify(adventLevelSolved));
 
 function show_time(milliseconds) {
     const seconds = Math.floor(milliseconds / 1000);
@@ -69,13 +69,13 @@ setInterval(function () {
     const currentTimestamp = Date.now();
     const elapsed = currentTimestamp - lastTimestamp;
 
-    if (!levelSolved[level_id]) {
-        levelTimes[level_id] += elapsed;
-        time_text.textContent = `Time elapsed: ${show_time(levelTimes[level_id])}`;
+    if (!adventLevelSolved[level_id]) {
+        adventLevelTimes[level_id] += elapsed;
+        time_text.textContent = `Time elapsed: ${show_time(adventLevelTimes[level_id])}`;
     }
 
     lastTimestamp = currentTimestamp;
-    localStorage.setItem("levelTimes", JSON.stringify(levelTimes));
+    localStorage.setItem("adventLevelTimes", JSON.stringify(adventLevelTimes));
 }, 250);
 
 let mouse_down = false;
@@ -175,11 +175,11 @@ function initialize_maze(level_number) {
 
     player_path = [[player_x, player_y, start_num]];
 
-    if (levelSolved[level_id]) {
-        time_text.textContent = `Solved in ${show_time(levelTimes[level_id])}!`;
+    if (adventLevelSolved[level_id]) {
+        time_text.textContent = `Solved in ${show_time(adventLevelTimes[level_id])}!`;
         share_button.classList.toggle("hidden", false);
     } else {
-        time_text.textContent = `Time elapsed: ${show_time(levelTimes[level_id])}`;
+        time_text.textContent = `Time elapsed: ${show_time(adventLevelTimes[level_id])}`;
         share_button.classList.toggle("hidden", true);
     }
     share_button.textContent = "Share";
@@ -356,9 +356,9 @@ function draw() {
     if (player_x == target_x && player_y == target_y) {
         if (rounded_num == target_num) {
             status_text.textContent = "You win!";
-            levelSolved[level_id] = 1;
-            localStorage.setItem("levelSolved", JSON.stringify(levelSolved));
-            time_text.textContent = `Solved in ${show_time(levelTimes[level_id])}!`;
+            adventLevelSolved[level_id] = 1;
+            localStorage.setItem("adventLevelSolved", JSON.stringify(adventLevelSolved));
+            time_text.textContent = `Solved in ${show_time(adventLevelTimes[level_id])}!`;
             share_button.classList.toggle("hidden", false);
         } else {
             status_text.innerHTML = `You need to finish with the target number <span style="color: ${colors.target};">${target_num}</span>. Keep trying! (Current number: <span style="color: red">${status_num}</span>)`;
@@ -483,7 +483,7 @@ undo_button.addEventListener("click", undo);
 share_button.addEventListener("click", async function () {
     const copy_text = `Number Mazes 2026 Advent
 ${level_select.textContent}
-Solved in ${show_time(levelTimes[level_id])}!`;
+Solved in ${show_time(adventLevelTimes[level_id])}!`;
     try {
         await navigator.clipboard.writeText(copy_text);
         share_button.textContent = "Copied to clipboard!";
