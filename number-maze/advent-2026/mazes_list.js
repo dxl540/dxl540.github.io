@@ -13,7 +13,7 @@ const levels = [
         Every day from December 1-25, a new puzzle will release here at <b>midnight Pacific time</b>.
         Don't worry, the timer only counts when you're on the page, so you won't have to stay up.
         These puzzles will start off fairly easy but increase in difficulty throughout the month.
-        Below is a sample puzzle! (Rest assured, the actual puzzles will start off easier than this.)
+        Below is a sample puzzle! (Rest assured, the actual puzzles will start off <b>much easier</b> than this.)
         
         I might be interested in having some people testsolve these puzzles before they go live.
         If you're interested in testsolving, DM me on Discord!
