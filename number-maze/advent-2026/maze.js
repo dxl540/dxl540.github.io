@@ -433,12 +433,24 @@ function moveRight() {
 
 document.addEventListener("keydown", function (event) {
     if (event.key == "ArrowUp" || event.key == "w") {
+        if (document.activeElement !== level_select) {
+            event.preventDefault();
+        }
         moveUp();
     } else if (event.key == "ArrowDown" || event.key == "s") {
+        if (document.activeElement !== level_select) {
+            event.preventDefault();
+        }
         moveDown();
     } else if (event.key == "ArrowLeft" || event.key == "a") {
+        if (document.activeElement !== level_select) {
+            event.preventDefault();
+        }
         moveLeft();
     } else if (event.key == "ArrowRight" || event.key == "d") {
+        if (document.activeElement !== level_select) {
+            event.preventDefault();
+        }
         moveRight();
     } else if (event.key == "z") {
         undo();
