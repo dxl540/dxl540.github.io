@@ -494,7 +494,7 @@ undo_button.addEventListener("click", undo);
 
 share_button.addEventListener("click", async function () {
     const copy_text = `Number Mazes 2026 Advent
-${level_select.textContent}
+${level_select.options[level_select.selectedIndex].text}
 Solved in ${show_time(adventLevelTimes[level_id])}!`;
     try {
         await navigator.clipboard.writeText(copy_text);
